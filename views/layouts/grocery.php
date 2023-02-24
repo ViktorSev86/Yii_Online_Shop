@@ -49,6 +49,8 @@ AppAsset::register($this);
 	
 <body>
 <?php $this->beginBody() ?>
+<?php // debug(Yii::$app) // Запускаем созданную в libs/funcs функцию для отладки, которая выводит всю информацию о нашем сайте ?>
+<?php // debug(Yii::$app->homeUrl) // Выводим URL главной страницы ?>
 <!-- header -->
 	<div class="agileits_header">
 		<div class="w3l_offers">
