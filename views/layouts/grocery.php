@@ -15,6 +15,7 @@ AppAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <html>
 <head>
+<base href="/">
 <meta charset="<?= Yii::$app->charset ?>">
 <?php $this->registerCsrfMetaTags() ?>
 <title><?= Html::encode($this->title) ?></title>
@@ -131,9 +132,9 @@ AppAsset::register($this);
 	</div>
 <!-- //header -->
 
-<div class="banner">
-	<?= $this->render('//layouts/inc/sidebar') // Рендерим левую боковую панель-меню ?> 
-	<?= $content // Вставим вместо вырезанной изменяемой части сайта, которую перенесли в файл home/index.php ?> 
+<!--<div class="banner"> Переносим в вид views/home/index.php
+	< ?= $this->render('//layouts/inc/sidebar') // Рендерим левую боковую панель-меню ?> -->
+<?= $content // Вставим вместо вырезанной изменяемой части сайта, которую перенесли в файл home/index.php ?> 
 
 <!-- newsletter -->
 	<div class="newsletter">

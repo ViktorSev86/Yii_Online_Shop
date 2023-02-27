@@ -54,6 +54,8 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+                'category/<id:\d+>' => 'category/view', // Настраиваем ссылки на категории из бокового меню, d+ - регулярное выражение, которое означает: минимум 1 цифра
+                'product/<id:\d+>' => 'product/view',
             ],
         ],
         
