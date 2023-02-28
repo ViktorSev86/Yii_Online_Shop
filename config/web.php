@@ -53,9 +53,11 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => false,
-            'rules' => [
+            'rules' => [ // Правила для настройки ЧПУ (человеку понятных URL)
                 'category/<id:\d+>' => 'category/view', // Настраиваем ссылки на категории из бокового меню, d+ - регулярное выражение, которое означает: минимум 1 цифра
+                'category/<id:\d+>/page/<page:\d+>' => 'category/view', // Убираем гет-параметры из Url при постраничной навигации
                 'product/<id:\d+>' => 'product/view',
+                'search' => 'category/search', // Убираем category из URL поиска
             ],
         ],
         

@@ -5,7 +5,7 @@
 		<div class="container">
 			<ul>
 				<li><i class="fa fa-home" aria-hidden="true"></i><a href="<?= \yii\helpers\Url::home() ?>">Home</a><span>|</span></li>
-				<li><?= $category->title ?></li>
+				<li>Поиск</li>
 			</ul>
 		</div>
 </div>
@@ -68,7 +68,7 @@
 				<div class="clearfix"> </div>
 			</div>
 			<div class="w3ls_w3l_banner_nav_right_grid">
-				<h3><?= $category->title ?></h3>
+				<h3>Поиск: "<?= \yii\helpers\Html::encode($q) ?>"</h3>
                 <?php if(!empty($products)): ?>
                     <?php foreach($products as $product): ?>
                         <div class="w3ls_w3l_banner_nav_right_grid1">
@@ -129,7 +129,7 @@
 					</div>
                 <?php else: ?>
                     <div class="w3ls_w3l_banner_nav_right_grid1">
-                        <h6>Здесь пока нет товаров</h6>
+                        <h6>По запросу ничего не найдено!</h6>
                     </div>
                 <?php endif; ?>
 			</div>
