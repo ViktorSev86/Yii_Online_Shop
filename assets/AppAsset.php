@@ -34,6 +34,7 @@ class AppAsset extends AssetBundle
         'js/easing.js',
         'js/jquery.flexslider.js',
         'js/minicart.js',
+        'js/okzoom.js', // Скрипт для изменения изображений товара
         'js/main.js', // Подключаем файл, который мы создали
     ];
     public $depends = [

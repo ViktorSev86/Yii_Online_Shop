@@ -12,4 +12,9 @@ class Product extends ActiveRecord
         return 'product';
     }
 
+    public function getCategory() // Получение родительской категории для вывода её в хлебных крошках карточки продукта
+    {
+        return $this->hasOne(Category::class, ['id' => 'category_id']); // Связываем с моделью категории по id категории
+    }
+
 }

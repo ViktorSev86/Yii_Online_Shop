@@ -1720,6 +1720,12 @@ h2.typoh2{
 	.grid_5 h3, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h3.hdg, h3.bars {
 		margin-bottom: .5em;
 	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
 	.progress {
 		height: 10px;
 		margin-bottom: 10px;
