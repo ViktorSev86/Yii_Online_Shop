@@ -1,28 +1,28 @@
-jQuery(document).ready(function($) { // Создадим файл и скопируем сюда все скрипты из шаблона grocery
+jQuery(document).ready(function($) {
 
-    $(".scroll").click(function(event){		
+    $(".scroll").click(function(event){
         event.preventDefault();
         $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
     });
 
     var navoffeset=$(".agileits_header").offset().top;
     $(window).scroll(function(){
-       var scrollpos=$(window).scrollTop(); 
-       if(scrollpos >=navoffeset){
-           $(".agileits_header").addClass("fixed");
-       }else{
-           $(".agileits_header").removeClass("fixed");
-       }
+        var scrollpos=$(window).scrollTop();
+        if(scrollpos >=navoffeset){
+            $(".agileits_header").addClass("fixed");
+        }else{
+            $(".agileits_header").removeClass("fixed");
+        }
     });
 
-    $(".dropdown").hover(            
+    $(".dropdown").hover(
         function() {
             $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
-            $(this).toggleClass('open');        
+            $(this).toggleClass('open');
         },
         function() {
             $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
-            $(this).toggleClass('open');       
+            $(this).toggleClass('open');
         }
     );
 
@@ -35,34 +35,78 @@ jQuery(document).ready(function($) { // Создадим файл и скопи�
         shadow: "0 0 5px #000"
     });
 
-});
 
+});
 
 $(window).load(function(){
     $('.flexslider').flexslider({
-      animation: "slide",
-      start: function(slider){
-        $('body').removeClass('loading');
-      }
+        animation: "slide",
+        start: function(slider){
+            $('body').removeClass('loading');
+        }
     });
-  });
-
+});
 
 paypal.minicart.render();
 
 paypal.minicart.cart.on('checkout', function (evt) {
-	var items = this.items(),
-		len = items.length,
-		total = 0,
-		i;
+    var items = this.items(),
+        len = items.length,
+        total = 0,
+        i;
 
-	// Count the number of each item in the cart
-	for (i = 0; i < len; i++) {
-		total += items[i].get('quantity');
-	}
+    // Count the number of each item in the cart
+    for (i = 0; i < len; i++) {
+        total += items[i].get('quantity');
+    }
 
-	if (total < 3) {
-		alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-		evt.preventDefault();
-	}
+    if (total < 3) {
+        alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+        evt.preventDefault();
+    }
 });
+
+/* Cart */
+
+function showCart(cart){
+    $('#modal-cart .modal-body').html(cart);
+    $('#modal-cart').modal();
+    let cartSum = $('#cart-sum').text() ? $('#cart-sum').text() : '$0';
+    if(cartSum){
+        $('.cart-sum').text(cartSum);
+    }
+}
+
+function getCart(){
+    $.ajax({
+        url: 'cart/show',
+        type: 'GET',
+        success: function (res) {
+            if(!res) alert('Ошибка');
+            showCart(res);
+        },
+        error: function(){
+            alert('Error!');
+        }
+    });
+}
+
+$('.add-to-cart').on('click', function () {
+    let id = $(this).data('id');
+    $.ajax({
+        url: 'cart/add',
+        data: {id: id},
+        type: 'GET',
+        success: function (res) {
+            if(!res) alert('Ошибка');
+            showCart(res);
+        },
+        error: function(){
+            alert('Error!');
+        }
+    });
+    return false; // Отменяем дефолтное поведение: чтобы вместо перехода по ссылке выполнялся Ajax-запрос
+});
+
+/* Cart */
+

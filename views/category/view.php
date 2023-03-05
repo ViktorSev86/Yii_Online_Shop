@@ -98,7 +98,10 @@
                                                         </h4>
                                                     </div>
                                                     <div class="snipcart-details">
-                                                        <form action="#" method="post">
+
+													<a href="<?= \yii\helpers\Url::to(['cart/add', 'id' => $product->id]) ?>" data-id="<?= $product->id ?>" class="button add-to-cart">Добавить товар в корзину</a>
+                                                        
+														<!--<form action="#" method="post">
                                                             <fieldset>
                                                                 <input type="hidden" name="cmd" value="_cart" />
                                                                 <input type="hidden" name="add" value="1" />
@@ -111,7 +114,7 @@
                                                                 <input type="hidden" name="cancel_return" value=" " />
                                                                 <input type="submit" name="submit" value="Add to cart" class="button" />
                                                             </fieldset>
-                                                        </form>											
+                                                        </form> -->											
                                                     </div>
                                                 </div>    
                                             </figure>

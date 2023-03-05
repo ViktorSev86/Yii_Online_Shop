@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [ // Подключаем файлы стилей, упомянутые в шаблоне grocery
+    public $css = [
         'css/bootstrap.css',
         'css/style.css',
         'css/font-awesome.css',
@@ -27,15 +27,15 @@ class AppAsset extends AssetBundle
         '//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic',
         'css/flexslider.css',
     ];
-    public $js = [ // Полключаем файлы js, упомянутые в шаблоне grocery
+    public $js = [
         'js/jquery-1.11.1.min.js',
         'js/bootstrap.min.js',
         'js/move-top.js',
         'js/easing.js',
         'js/jquery.flexslider.js',
         'js/minicart.js',
-        'js/okzoom.js', // Скрипт для изменения изображений товара
-        'js/main.js', // Подключаем файл, который мы создали
+        'js/okzoom.js',
+        'js/main.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
