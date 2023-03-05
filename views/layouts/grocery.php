@@ -81,8 +81,8 @@ AppAsset::register($this);
                     <div class="modal-body"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-                        <a href="<?= \yii\helpers\Url::to(['cart/view']) ?>" class="btn btn-success">Оформить заказ</a>
-                        <button type="button" class="btn btn-danger">Очистить корзину</button>
+                        <a href="<?= \yii\helpers\Url::to(['cart/checkout']) ?>" class="btn btn-success">Оформить заказ</a>
+                        <button onclick = "clearCart()" type="button" class="btn btn-danger">Очистить корзину</button>
                     </div>
                 </div>
             </div>
