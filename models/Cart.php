@@ -24,6 +24,7 @@ class Cart extends Model
     // Добавление товара в корзину
     public function addToCart($product, $qty = 1) // Второй (не обязательный) параметр - количество товара
     {
+        $qty = ($qty == '-1') ? -1 : 1; // Если не пришло -1, параметр будет равным 1, что бы ни пришло от пользователя
         if(isset($_SESSION['cart'][$product->id])){ // Если товар есть в корзине, увеличиваем его количество
             $_SESSION['cart'][$product->id]['qty'] += $qty;
         }else{
@@ -36,6 +37,9 @@ class Cart extends Model
         }
         $_SESSION['cart.qty'] = isset($_SESSION['cart.qty']) ? $_SESSION['cart.qty'] + $qty : $qty; // Если количество существует в сессии, добавляем к нему количество, если нет, кладём количество в сессию
         $_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] + $qty * $product->price : $qty * $product->price;
+        if($_SESSION['cart'][$product->id]['qty'] == 0) { // Если количество стало 0, удаляем продукт из корзины
+            unset($_SESSION['cart'][$product->id]);
+        }
     }
 
     public function recalc($id)

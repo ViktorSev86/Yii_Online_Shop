@@ -4,14 +4,30 @@ namespace app\controllers;
 
 use app\models\Cart;
 use app\models\Product;
+use app\models\Order;
 
 class CartController extends AppController
 {
 
+    public function actionChangeCart()
+    {
+        $id = \Yii::$app->request->get('id');
+        $qty = \Yii::$app->request->get('qty');
+        $product = Product::findOne($id);
+        if(empty($product)){
+            return false;
+        }
+        $session = \Yii::$app->session;
+        $session->open();
+        $cart = new Cart();
+        $cart->addToCart($product, $qty);
+        return $this->renderPartial('cart-modal', compact('session'));
+    }
+
     public function actionAdd($id)
     {
         $product = Product::findOne($id);
-        if(empty($product)){
+        if(empty($product)) {
             return false;
         }
         $session = \Yii::$app->session; // Создаём сессию
@@ -58,10 +74,10 @@ class CartController extends AppController
     {
         $this->setMeta("Оформление заказа :: " . \yii::$app->name); // Задаём мета-теги
         $session = \Yii::$app->session;
-        
+        $order = new Order();
         
 
-        return $this->render('checkout', compact('session'));
+        return $this->render('checkout', compact('session', 'order'));
     }
 
 }
