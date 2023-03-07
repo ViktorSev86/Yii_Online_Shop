@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Cart;
 use app\models\Product;
 use app\models\Order;
+use app\models\OrderProduct;
 
 class CartController extends AppController
 {
@@ -75,7 +76,23 @@ class CartController extends AppController
         $this->setMeta("Оформление заказа :: " . \yii::$app->name); // Задаём мета-теги
         $session = \Yii::$app->session;
         $order = new Order();
-        
+        $order_product = new OrderProduct();
+        if ($order->load(\Yii::$app->request->post())) {
+            $order->qty = $session['cart.qty'];
+            $order->total = $session['cart.sum'];
+            $transaction = \Yii::$app->getDb()->beginTransaction();
+            if (!$order->save() || !$order_product->saveOrderProducts($session['cart'], $order->id)) { // Если данные не сохранены, откатываем транзакцию
+                \Yii::$app->session->setFlash('error', 'Ошибка оформления заказа'); // Сообщаем пользователю об ошибке
+                $transaction->rollBack();
+            } else {
+                \Yii::$app->session->setFlash('success', 'Ваш заказ принят');
+                $transaction->commit(); // Выполняем транзакцию
+                $session->remove('cart'); // Очищаем корзину
+                $session->remove('cart.qty');
+                $session->remove('cart.sum');
+                return $this->refresh(); // Обновляем страницу
+            }
+        }
 
         return $this->render('checkout', compact('session', 'order'));
     }
