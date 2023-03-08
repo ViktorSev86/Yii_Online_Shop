@@ -16,6 +16,8 @@
         <!-- about -->
         <div class="privacy about">
 
+            <?php //debug($order->errors); // Печатаем ошибки, которые выдаются при автоматической валидации, если метод save() модели не срабатывает ?>
+            <?php //debug($order_product->errors); ?>
             <?= \app\widgets\Alert::widget() ?>
 
             <h3>Chec<span>kout</span></h3>

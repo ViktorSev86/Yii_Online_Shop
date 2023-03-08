@@ -94,7 +94,7 @@ class CartController extends AppController
             }
         }
 
-        return $this->render('checkout', compact('session', 'order'));
+        return $this->render('checkout', compact('session', 'order', 'order_product'));
     }
 
 }
