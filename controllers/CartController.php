@@ -85,8 +85,18 @@ class CartController extends AppController
                 \Yii::$app->session->setFlash('error', 'Ошибка оформления заказа'); // Сообщаем пользователю об ошибке
                 $transaction->rollBack();
             } else {
-                \Yii::$app->session->setFlash('success', 'Ваш заказ принят');
                 $transaction->commit(); // Выполняем транзакцию
+                \Yii::$app->session->setFlash('success', 'Ваш заказ принят');
+                try{
+                    \Yii::$app->mailer->compose('order', ['session' => $session])
+                        ->setFrom([\Yii::$app->params['senderEmail'] => \Yii::$app->params['senderName']])
+                        ->setTo([$order->email, \Yii::$app->params['adminEmail']])
+                        ->setSubject('Заказ на сайте')
+                        ->send();
+                }catch (\Swift_TransportException $e){
+                    var_dump($e); die;
+                }
+
                 $session->remove('cart'); // Очищаем корзину
                 $session->remove('cart.qty');
                 $session->remove('cart.sum');
