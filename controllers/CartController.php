@@ -75,6 +75,7 @@ class CartController extends AppController
     {
         $this->setMeta("Оформление заказа :: " . \yii::$app->name); // Задаём мета-теги
         $session = \Yii::$app->session;
+        $session->open();
         $order = new Order();
         $order_product = new OrderProduct();
         if ($order->load(\Yii::$app->request->post())) {
