@@ -13,7 +13,6 @@ AppAsset::register($this);
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
-<html>
 <head>
 <base href="/">
 <meta charset="<?= Yii::$app->charset ?>">
