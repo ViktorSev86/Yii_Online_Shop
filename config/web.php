@@ -18,6 +18,8 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
+            'layout' => 'admin',
+            'defaultRoute' => 'main/index',
         ],
     ],
     'components' => [
@@ -42,6 +44,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => '/admin/auth/login',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
