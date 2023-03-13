@@ -86,4 +86,10 @@ class User extends ActiveRecord //\yii\base\BaseObject
         // return $this->password === $password;
         return \Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
+
+    public function generateAuthKey() {
+        $this->auth_key = \Yii::$app->getSecurity()->generateRandomString();
+    }
+
+
 }
