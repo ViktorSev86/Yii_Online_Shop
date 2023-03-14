@@ -6,27 +6,25 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 
-// Модель для работы с таблицей Category базы данных
 class Order extends ActiveRecord
 {
 
-    public static function tableName() // Имя таблицы в базе данных отличается от имени модели (т.к. ORDER зарегестрированное слово в SQL), поэтому метод обязателен
+    public static function tableName()
     {
-        return 'orders'; 
+        return 'orders';
     }
 
     public function behaviors()
     {
         return [
             [
-                'class' => TimestampBehavior::class, // Используем поведение
+                'class' => TimestampBehavior::class,
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'], // Событие, которое происходит перед вставкой, для полей created_at, updated_at будет установлена текущая дата
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'], // Перед обновлением для поля updated_at будет установлена текущая дата
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
-                // По-умолчанию будет генерироваться метка времени UNIX
                 // если вместо метки времени UNIX используется datetime:
-                'value' => new Expression('NOW()'), // Вставляем в value текущее значение даты-времени
+                'value' => new Expression('NOW()'),
             ],
         ];
     }
