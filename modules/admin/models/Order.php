@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
+use app\modules\admin\models\OrderProduct;
 
 /**
  * This is the model class for table "orders".
@@ -30,6 +31,11 @@ class Order extends ActiveRecord
     public static function tableName()
     {
         return 'orders';
+    }
+
+    public function getOrderProduct() // Связываем с моделью OrderProduct для получения всех товаров из заказа
+    {
+        return $this->hasMany(OrderProduct::class, ['order_id' => 'id']);
     }
 
     public function behaviors()
@@ -74,7 +80,7 @@ class Order extends ActiveRecord
             'qty' => 'Кол-во',
             'total' => 'Сумма',
             'status' => 'Статус',
-            'name' => 'имя',
+            'name' => 'Имя',
             'email' => 'E-mail',
             'phone' => 'Телефон',
             'address' => 'Адрес',

@@ -3,6 +3,7 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use app\modules\admin\models\Order;
 
 /**
  * This is the model class for table "order_product".
@@ -23,6 +24,11 @@ class OrderProduct extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'order_product';
+    }
+
+    public function getOrder() // Связываем с моделью Order для получения заказа, в котором находится данный продукт
+    {
+        return $this->hasOne(Order::class, ['id' => 'order_id']);
     }
 
     /**
