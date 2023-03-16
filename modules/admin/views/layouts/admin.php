@@ -218,10 +218,10 @@ desired effect
             <h1>
                 <?= $this->title ?>
             </h1>
-            <?= Breadcrumbs::widget(['homeLink' => ['label' => 'Главная админ.', 'url' => '/admin/'], 
-                'links' => isset($this->params['breadcrumbs']) 
-                ? $this->params['breadcrumbs'] 
-                : [], ]) ?>
+            <?= Breadcrumbs::widget([
+                'homeLink' => ['label' => 'Главная', 'url' => '/admin/'],
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
             <?= Alert::widget() ?>
         </section>
 
@@ -326,6 +326,7 @@ desired effect
     immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
+
 <!-- ./wrapper -->
 
 <?php $this->endBody() ?>

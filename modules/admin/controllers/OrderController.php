@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use app\modules\admin\models\Order;
+use app\modules\admin\models\OrderProduct;
 use yii\data\ActiveDataProvider;
 use app\modules\admin\controllers\AppAdminController;
 use yii\web\NotFoundHttpException;
@@ -95,6 +96,7 @@ class OrderController extends AppAdminController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // Yii::$app->session->setFlash('success', 'Заказ обновлен'); //Не работает вывод виджета, что всё отработало (шаблон admin)
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -112,7 +114,9 @@ class OrderController extends AppAdminController
      */
     public function actionDelete($id)
     {
+        //$this->findModel($id)->unlinkAll('orderProduct', true); // Первый вариант: сначала удаляем связь
         $this->findModel($id)->delete();
+        OrderProduct::deleteAll(['order_id' => $id]);
 
         return $this->redirect(['index']);
     }
