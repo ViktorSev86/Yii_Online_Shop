@@ -53,16 +53,16 @@ class Product extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'category_id' => 'Category ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'price' => 'Price',
-            'old_price' => 'Old Price',
-            'description' => 'Description',
-            'keywords' => 'Keywords',
-            'img' => 'Img',
-            'is_offer' => 'Is Offer',
+            'id' => '№ товара',
+            'category_id' => 'Категория',
+            'title' => 'Наименование товара',
+            'content' => 'Описание товара',
+            'price' => 'Цена',
+            'old_price' => 'Старая цена',
+            'description' => 'Примечание',
+            'keywords' => 'Ключевые слова',
+            'img' => 'Изображение',
+            'is_offer' => 'Оффер',
         ];
     }
 }
