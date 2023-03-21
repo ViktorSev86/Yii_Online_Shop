@@ -20,7 +20,9 @@ use app\modules\admin\models\Category;
  * @property int $is_offer
  */
 class Product extends \yii\db\ActiveRecord
-{
+{   
+    public $file;
+
     /**
      * {@inheritdoc}
      */
@@ -44,6 +46,8 @@ class Product extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['price', 'old_price'], 'number'],
             [['title', 'description', 'keywords', 'img'], 'string', 'max' => 255],
+
+            // [['file'], 'image'],
         ];
     }
 
