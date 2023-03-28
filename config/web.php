@@ -83,7 +83,6 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [ // Правила для настройки ЧПУ (человеку понятных URL)
-		'/' => 'home/index',
                 'category/<id:\d+>' => 'category/view', // Настраиваем ссылки на категории из бокового меню, d+ - регулярное выражение, которое означает: минимум 1 цифра
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view', // Убираем гет-параметры из Url при постраничной навигации
                 'product/<id:\d+>' => 'product/view',
